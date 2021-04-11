@@ -6,11 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import com.diogojayme.quicksells.R
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_login.*
 
-class LoginFragment : Fragment() {
+class LoginFragment: Fragment() {
     var loginViewModel: LoginViewModel = LoginViewModel()
 
     override fun onCreateView(
@@ -25,7 +26,8 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         createAccount.setOnClickListener {
-            //Go to register activity
+            val directions = LoginFragmentDirections.toRegister()
+            Navigation.findNavController(it).navigate(directions)
         }
 
         login.setOnClickListener {

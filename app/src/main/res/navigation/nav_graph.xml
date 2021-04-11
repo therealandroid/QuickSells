@@ -11,6 +11,18 @@
         android:label="loginFragment"
         tools:layout="@layout/fragment_login" >
 
+        <action
+            android:id="@+id/toRegister"
+            app:destination="@id/registerFragment">
+
+        </action>
     </fragment>
 
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.diogojayme.quicksells.register.RegisterFragment"
+        android:label="register Fragment"
+        tools:layout="@layout/fragment_register" >
+
+    </fragment>
 </navigation>

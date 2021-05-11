@@ -46,12 +46,7 @@ class LoginFragment: Fragment() {
 
         loginViewModel.loginLiveData.observe(viewLifecycleOwner, Observer {
             login.isEnabled = !it
-            val text: String = if (it) {
-                "Login successfull"
-            } else {
-                "Login failed"
-            }
-            Snackbar.make(username, text, Snackbar.LENGTH_SHORT).show()
+
             val directions = LoginFragmentDirections.toSellsFragment()
 
             if(view != null)

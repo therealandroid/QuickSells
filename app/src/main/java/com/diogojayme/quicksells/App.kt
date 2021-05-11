@@ -7,6 +7,7 @@ class App: Application() {
 
     object SellsList {
         val data = mutableListOf<Sell>()
+        val MULTIPLIER = 3
     }
 
     override fun onCreate() {

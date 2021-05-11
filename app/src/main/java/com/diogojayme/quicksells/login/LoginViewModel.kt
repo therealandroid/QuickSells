@@ -21,7 +21,7 @@ class LoginViewModel : ViewModel() {
         loadingLiveData.postValue(true)
 
         viewModelScope.launch(Dispatchers.IO) {
-            delay(2000)
+            delay(300)
             loadingLiveData.postValue(false)//remove loading
 
             if (username == fake_username && password == fake_password) {

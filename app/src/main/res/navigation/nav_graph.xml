@@ -12,6 +12,12 @@
         tools:layout="@layout/fragment_login" >
 
         <action
+            android:id="@+id/toSellsFragment"
+            app:destination="@id/sellsFragment">
+
+        </action>
+
+        <action
             android:id="@+id/toRegister"
             app:destination="@id/registerFragment">
 
@@ -23,6 +29,28 @@
         android:name="com.diogojayme.quicksells.register.RegisterFragment"
         android:label="register Fragment"
         tools:layout="@layout/fragment_register" >
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/sellsFragment"
+        android:name="com.diogojayme.quicksells.sells_list.SellsListFragment"
+        android:label="List sells Fragment"
+        tools:layout="@layout/fragment_list_sells" >
+
+        <action
+            android:id="@+id/toQuickSell"
+            app:destination="@id/quickSellsFragment">
+
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/quickSellsFragment"
+        android:name="com.diogojayme.quicksells.quick_sells.QuickSellsFragment"
+        android:label="List sells Fragment"
+        tools:layout="@layout/fragment_quick_sells" >
+
 
     </fragment>
 </navigation>

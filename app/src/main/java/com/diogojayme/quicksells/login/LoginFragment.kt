@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.diogojayme.quicksells.R
+import com.diogojayme.quicksells.sells_list.SellsListFragment
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_login.*
 
@@ -51,6 +52,10 @@ class LoginFragment: Fragment() {
                 "Login failed"
             }
             Snackbar.make(username, text, Snackbar.LENGTH_SHORT).show()
+            val directions = LoginFragmentDirections.toSellsFragment()
+
+            if(view != null)
+                Navigation.findNavController(requireView()).navigate(directions)
         })
     }
 }

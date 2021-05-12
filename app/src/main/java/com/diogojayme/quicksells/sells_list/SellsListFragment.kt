@@ -1,26 +1,23 @@
 package com.diogojayme.quicksells.sells_list
 
 import android.os.Bundle
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import androidx.core.widget.doOnTextChanged
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.diogojayme.quicksells.App
+import com.diogojayme.quicksells.NavigationActivity
 import com.diogojayme.quicksells.R
-import com.diogojayme.quicksells.login.LoginFragmentDirections
 import kotlinx.android.synthetic.main.fragment_list_sells.*
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.callbackFlow
 
-class SellsListFragment : Fragment() {
 
-    val adapter = SellsAdapter()
+class SellsListFragment : Fragment(), OnItemDeletedListener {
+
+    val adapter = SellsAdapter(this)
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,6 +28,7 @@ class SellsListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupToolbar()
 
         vender.setOnClickListener {
             val directions = SellsListFragmentDirections.toQuickSell()
@@ -42,10 +40,37 @@ class SellsListFragment : Fragment() {
 
     }
 
+    fun setupToolbar(){
+        (requireActivity() as NavigationActivity).title = "Minhas vendas"
+        (requireActivity() as NavigationActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        (requireActivity() as NavigationActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
+    }
+
     override fun onResume() {
         super.onResume()
+        updateView()
+    }
+
+    fun updateView(){
+        if(App.SellsList.data.isEmpty()){
+            empty_view.visibility = View.VISIBLE
+            recyclerView.visibility = View.GONE
+        }else{
+            empty_view.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
+            adapter.submitData(App.SellsList.data)
+            adapter.notifyDataSetChanged()
+        }
+    }
+
+    override fun onItemRemoved(id: String) {
+        App.SellsList.data.remove(App.SellsList.data.find {
+            it.id == id
+        })
         adapter.submitData(App.SellsList.data)
         adapter.notifyDataSetChanged()
+
+        updateView()
     }
 
 }

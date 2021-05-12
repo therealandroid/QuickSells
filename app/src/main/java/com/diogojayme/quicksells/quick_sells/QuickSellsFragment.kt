@@ -14,9 +14,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.diogojayme.quicksells.App
 import com.diogojayme.quicksells.App.SellsList.MULTIPLIER
+import com.diogojayme.quicksells.NavigationActivity
 import com.diogojayme.quicksells.R
 import com.diogojayme.quicksells.model.Sell
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.fragment_list_sells.*
 import kotlinx.android.synthetic.main.fragment_quick_sells.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.awaitClose
@@ -40,12 +42,12 @@ fun EditText.textInputAsFlow() = callbackFlow {
 
 class QuickSellsFragment : Fragment() {
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setupToolbar()
         return inflater.inflate(R.layout.fragment_quick_sells, container, false)
     }
 
@@ -65,6 +67,13 @@ class QuickSellsFragment : Fragment() {
             )
         }
     }
+
+    fun setupToolbar(){
+        (requireActivity() as NavigationActivity).title = "Vendas rapidas"
+        (requireActivity() as NavigationActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        (requireActivity() as NavigationActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
+    }
+
 
     fun formatCurrency(number: Float): String{
         var COUNTRY = "BR"

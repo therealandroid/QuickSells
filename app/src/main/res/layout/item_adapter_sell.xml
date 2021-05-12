@@ -3,9 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:clickable="true"
     android:focusable="true"
+    android:id="@+id/content"
     android:focusableInTouchMode="true"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground">
 
     <TextView
         android:id="@+id/data"
@@ -18,10 +20,20 @@
         android:textSize="13sp"
         android:text="2021"/>
 
+    <ImageView
+        android:id="@+id/delete"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:padding="6dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_baseline_delete_24"/>
+
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/data"
+        android:layout_toStartOf="@+id/delete"
         android:layout_toEndOf="@+id/data"
         android:layout_margin="16dp"
         android:orientation="vertical">
@@ -83,5 +95,12 @@
         </RelativeLayout>
     </LinearLayout>
 
+
+
+    <View
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#D8D8D8"/>
 
 </RelativeLayout>

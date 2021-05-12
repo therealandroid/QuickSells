@@ -7,7 +7,7 @@ import com.diogojayme.quicksells.R
 import com.diogojayme.quicksells.model.Sell
 
 
-class SellsAdapter() : RecyclerView.Adapter<ProductViewHolder>() {
+class SellsAdapter(var listener: OnItemDeletedListener) : RecyclerView.Adapter<ProductViewHolder>() {
 
     var productList: List<Sell> = mutableListOf()
 
@@ -23,7 +23,7 @@ class SellsAdapter() : RecyclerView.Adapter<ProductViewHolder>() {
                 R.layout.item_adapter_sell,
                 parent,
                 false
-            )
+            ), listener
         )
     }
 
